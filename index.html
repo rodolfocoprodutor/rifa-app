@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sorteio da Rifa Adriana</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icons/icon-192.png" />
+  <meta name="theme-color" content="#00ff00" />
+</head>
+<body>
+  <div class="container">
+    <h1>SORTEIO DA RIFA<br />ADRIANA</h1>
+
+    <div class="grid" id="numberGrid"></div>
+
+    <button id="drawButton">Sortear Número</button>
+
+    <div class="resultado">
+      <p>O NÚMERO SORTEADO É</p>
+      <div id="numeroSorteado" class="sorteado"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js')
+        .then(() => console.log("Service Worker registrado com sucesso"))
+        .catch(error => console.log("Erro ao registrar Service Worker", error));
+    }
+  </script>
+</body>
+</html>
