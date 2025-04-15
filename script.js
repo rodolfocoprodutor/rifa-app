@@ -1,42 +1,27 @@
-const numberGrid = document.getElementById("numberGrid");
-const numeroSorteado = document.getElementById("numeroSorteado");
-const drawButton = document.getElementById("drawButton");
+const grid = document.getElementById('numberGrid');
+const result = document.getElementById('numeroSorteado');
+const button = document.getElementById('drawButton');
 
-for (let i = 1; i <= 50; i++) {
-  const btn = document.createElement("button");
-  btn.textContent = i;
-  btn.dataset.number = i;
-  numberGrid.appendChild(btn);
+for (let i = 1; i <= 25; i++) {
+  const cell = document.createElement('div');
+  cell.textContent = i;
+  cell.dataset.num = i;
+  grid.appendChild(cell);
 }
 
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-async function animarSorteio() {
-  const buttons = Array.from(numberGrid.children);
-  let lastActive = null;
-
-  for (let i = 0; i < 20; i++) {
-    const randomIndex = Math.floor(Math.random() * buttons.length);
-    const btn = buttons[randomIndex];
-
-    if (lastActive) lastActive.classList.remove("active");
-    btn.classList.add("active");
-    lastActive = btn;
-
-    await sleep(100);
-  }
-
-  const sorteado = Math.floor(Math.random() * 50) + 1;
-  buttons.forEach(btn => {
-    btn.classList.remove("active", "sorteado");
-    if (parseInt(btn.dataset.number) === sorteado) {
-      btn.classList.add("sorteado");
+button.addEventListener('click', () => {
+  const cells = Array.from(grid.children);
+  let current = 0;
+  const total = 20 + Math.floor(Math.random() * 30);
+  const interval = setInterval(() => {
+    cells.forEach(cell => cell.classList.remove('active'));
+    const rand = Math.floor(Math.random() * cells.length);
+    cells[rand].classList.add('active');
+    current++;
+    if (current > total) {
+      clearInterval(interval);
+      const selected = cells[rand];
+      result.textContent = selected.dataset.num;
     }
-  });
-
-  numeroSorteado.textContent = sorteado;
-}
-
-drawButton.addEventListener("click", animarSorteio);
+  }, 100);
+});

@@ -1,10 +1,10 @@
 {
-  "name": "Sorteio da Rifa",
-  "short_name": "Rifa",
-  "start_url": "./index.html",
+  "name": "Sorteio da Rifa Adriana",
+  "short_name": "Rifa Adriana",
+  "start_url": ".",
   "display": "standalone",
-  "background_color": "#fef2e4",
-  "theme_color": "#00ff00",
+  "background_color": "#e3fce3",
+  "theme_color": "#38a169",
   "icons": [
     {
       "src": "icons/icon-192.png",
